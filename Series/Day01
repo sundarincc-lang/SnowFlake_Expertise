@@ -1,0 +1,114 @@
+🧊 Snowflake Day 1: Getting Started
+
+Welcome to Day 1 of your Snowflake Hero to Zero journey! Today’s focus is on understanding the fundamentals of Snowflake and setting up your environment.
+
+🎯 Objectives
+
+Understand what Snowflake is and why it’s unique.
+
+Learn about Snowflake’s architecture.
+
+Set up your Snowflake account.
+
+Explore the Snowflake UI and basic SQL commands.
+
+🧠 What is Snowflake?
+
+Snowflake is a cloud-based data warehouse that separates compute, storage, and services layers. It allows you to scale resources independently, pay only for what you use, and handle structured and semi-structured data efficiently.
+
+Key Features
+
+Elastic scalability – scale up or down instantly.
+
+Separation of compute and storage – independent resource management.
+
+Secure data sharing – share data across accounts without copying.
+
+Multi-cloud support – available on AWS, Azure, and GCP.
+
+🏗️ Snowflake Architecture Overview
+
+Snowflake’s architecture consists of three layers:
+
+Layer
+
+Description
+
+Storage Layer
+
+Stores data in compressed, columnar format.
+
+Compute Layer
+
+Virtual warehouses perform queries and transformations.
+
+Services Layer
+
+Manages metadata, authentication, and optimization.
+
+⚙️ Setting Up Your Environment
+
+Step 1: Create a Snowflake Account
+
+Visit Snowflake Trial Signup.
+
+Choose your preferred cloud provider (AWS, Azure, or GCP).
+
+Select your region and complete registration.
+
+Step 2: Explore the Snowflake UI
+
+Log in to the Snowflake console.
+
+Familiarize yourself with Databases, Warehouses, and Worksheets.
+
+Step 3: Create Your First Database
+
+CREATE DATABASE snowflake_training;
+USE DATABASE snowflake_training;
+CREATE SCHEMA day1_lab;
+
+Step 4: Load Sample Data
+
+Use the Sample Data option or upload a small CSV file.
+
+CREATE OR REPLACE TABLE employees (
+  id INT,
+  name STRING,
+  department STRING,
+  salary FLOAT
+);
+INSERT INTO employees VALUES (1, 'Alice', 'HR', 60000), (2, 'Bob', 'IT', 75000);
+
+Step 5: Run Basic Queries
+
+SELECT * FROM employees;
+SELECT department, AVG(salary) FROM employees GROUP BY department;
+
+🧩 Hands-On Challenge
+
+Create a new schema called practice_day1.
+
+Load a dataset of your choice.
+
+Write queries to explore and summarize the data.
+
+🏁 Wrap-Up
+
+By the end of Day 1, you should:
+
+Understand Snowflake’s architecture.
+
+Have a working Snowflake account.
+
+Be comfortable running basic SQL queries.
+
+Tomorrow, we’ll dive into data ingestion and management using Snowpipe and external stages.
+
+📚 Resources
+
+Snowflake Documentation
+
+Snowflake YouTube Channel
+
+SQL Basics
