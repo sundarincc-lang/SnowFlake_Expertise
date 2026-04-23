@@ -54,3 +54,6 @@
   
 ![Normalization vs Denormalization](https://github.com/sundarincc-lang/SnowFlake_Expertise/blob/51748728ca50c3e856ea3222621dbb42000fee48/Series/Normalization_Denormalizaton.png)
 
+
+![Normalization vs Denormalization](https://github.com/sundarincc-lang/SnowFlake_Expertise/blob/342e5524078a31a00264fdbe1fa667bf1ef07765/Series/Normalization_denormaliation_comic.png)
+
