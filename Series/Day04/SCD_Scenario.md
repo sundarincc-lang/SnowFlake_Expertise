@@ -18,6 +18,43 @@ Slowly Changing Dimension (SCD) types 0–6, showing how each handles changes in
 
 ## 🧠 SCD Type 2 in Snowflake ETL Pipeline
 
+SCD Type 2 in Snowflake ETL Pipeline visual — a complete flow showing how historical changes are tracked using Streams, Tasks, and Merge operations.
+
+🔹 Process Overview
+
+Source Data → ERP, CRM, or cloud systems feed updates.
+
+Stream Capture → Snowflake Streams detect changes in staging tables.
+
+Task Execution → Scheduled Tasks run ETL logic automatically.
+
+Merge Operation →
+
+Marks old records as inactive (end_date, current_flag = 'N').
+
+Inserts new records with updated values (start_date, current_flag = 'Y').
+
+Dimension Table → Maintains full history using surrogate keys.
+
+🔸 Example Flow
+
+Old Record: Customer ID 101 | Alice | 456 Oak Ave | Start: 2019‑01‑01 | End: 2021‑06‑15 | Flag: N
+
+New Record: Customer ID 101 | Alice | 789 Pine St | Start: 2021‑06‑16 | End: NULL | Flag: Y
+
+✅ Result:  
+Snowflake keeps both versions, enabling accurate historical analysis and time‑based reporting
+
+MERGE INTO customer_dim AS target
+USING staging_customer AS source
+ON target.customer_id = source.customer_id
+WHEN MATCHED AND target.address <> source.address THEN
+  UPDATE SET end_date = CURRENT_DATE(), current_flag = 'N'
+WHEN NOT MATCHED THEN
+  INSERT (customer_id, name, address, start_date, current_flag)
+  VALUES (source.customer_id, source.name, source.address, CURRENT_DATE(), 'Y');
+
+
 ![SCD Type 2 in Snowflake](https://copilot.microsoft.com/th/id/BCO.ce52136b-6b38-4dbf-8fd1-bcb30f9eb515.png)
 
 ### Key Insights
