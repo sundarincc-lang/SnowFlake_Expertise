@@ -46,8 +46,7 @@ Services Layer
 
 Manages metadata, authentication, and optimization.
 
-## 🧊 Snowflake Architecture## 🧊 Snowflake Architecture
-
+## 🧊 Snowflake Architecture
 
 ![image_alt](https://github.com/sundarincc-lang/SnowFlake_Expertise/blob/d665303954dd93b7425426fb6f5e1d4bb6a8ec37/Series/snowflake_architecture.png)
 
