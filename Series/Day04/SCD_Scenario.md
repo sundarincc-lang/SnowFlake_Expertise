@@ -1,59 +1,18 @@
 Slowly Changing Dimensions (SCD) — showing how data evolves in a dimension table over time.
 
-🧩 Type 1 – Overwrite (No History)
-Scenario: A customer moves to a new address.
-Action: Update the existing record; old data is lost.
+Slowly Changing Dimension (SCD) types 0–6, showing how each handles changes in dimension data over time — perfect for data warehousing and Snowflake implementations.
 
-UPDATE customer_dim
-SET address = '789 Pine St'
-WHERE customer_id = 1;
+## 🧠 SCD Types 0–6 Comparison
 
-Result:
+![SCD Types Comparison](https://copilot.microsoft.com/th/id/BCO.0c3483be-34e6-412d-9f6f-5511683710cd.png)
 
-Customer ID	Name	Address
-1	Alice	789 Pine St
-
-✅ Use Case: When historical data isn’t needed (e.g., correcting typos).
-
-🧩 Type 2 – Add New Row (Keep History)
-Scenario: Track address changes over time.
-Action: Insert a new row with start and end dates.  
-
-INSERT INTO customer_dim
-(customer_id, name, address, start_date, end_date, current_flag)
-VALUES (1, 'Alice', '789 Pine St', '2021‑06‑16', NULL, 'Y');
-
-UPDATE customer_dim
-SET end_date = '2021‑06‑15', current_flag = 'N'
-WHERE customer_id = 1 AND current_flag = 'Y';
-
-
-Result:
-
-Customer ID	Name	Address	Start Date	End Date	Current Flag
-1	Alice	456 Oak Ave	2019‑01‑01	2021‑06‑15	N
-1	Alice	789 Pine St	2021‑06‑16	NULL	Y
-
-✅ Use Case: When full history is required (e.g., customer tracking).
-
-🧩Type 3 – Add New Column (Partial History)
-Scenario: Track only the previous status.
-Action: Add a column for the old value.
-
-ALTER TABLE customer_dim ADD previous_status VARCHAR(20);
-
-UPDATE customer_dim
-SET previous_status = current_status,
-    current_status = 'Active'
-WHERE customer_id = 1;
-
-
-Result:
-
-Customer ID	Name	Current Status	Previous Status
-1	Alice	Active	Inactive
-
-✅ Use Case: When only limited history is needed (e.g., last known status).
+### Key Insights
+- **SCD 0:** Fixed, no changes.  
+- **SCD 1:** Overwrite, no history.  
+- **SCD 2:** Add new row, full history.  
+- **SCD 3:** Add column, partial history.  
+- **SCD 4:** Separate history table.  
+- **SCD 6:** Hybrid of multiple types.
 
 
 
