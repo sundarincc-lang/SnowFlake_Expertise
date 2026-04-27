@@ -16,5 +16,5 @@ This repo documents my journey from beginner to advanced Snowflake skills in 90 
 - Maintain a portfolio of Snowflake work.
 
 ## Resources
-- [Snowflake Handbook](https://github.com/Tejustarr/snowflake-handbook)
+
 - [Snowflake Docs](https://docs.snowflake.com)
